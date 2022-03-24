@@ -10,11 +10,10 @@ const dev = merge(baseConfig, {
     devServer: {   
         inline: true,
     hot: true,         
-                               // Live reload + что-то в оперативке хранит
-        // static: [{
-        //     directory: baseConfig.externals.paths.dist,         // Следит за файлам из заданной директории, (откуда взять html, картинки и т.п),
-        //     // publicPath: ''
-        // }],
+        // watchFiles:['src/**/*.html'],                    // Live reload + что-то в оперативке хранит
+        static: [{
+            directory: baseConfig.externals.paths.src,         // Следит за файлам из заданной директории, (откуда взять html, картинки и т.п),
+        }],
         client: {
             overlay: true
         }
