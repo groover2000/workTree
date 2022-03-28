@@ -3,8 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PATHS = {
-    src: path.join(__dirname, '/src'),
-    dist: path.join(__dirname, '/dist'),
+    src: path.join(__dirname, '../src'),
+    dist: path.join(__dirname, '../dist'),
     assets: 'assets/'
 };
 
@@ -18,7 +18,8 @@ let config = {
     output: {                                           // Выходная точка(и)  path.resolve(__dirname, 'dist')
         path: PATHS.dist,                               
         filename:  path.join(PATHS.assets, 'js/[name].js'),
-        publicPath: '/'                             // Путь, который будет указываться в браузере для подключения документтов т.е http://server/dist/[name].js(можно указывать в DevServer) 
+        publicPath: '/' ,
+        clean: true                            // Путь, который будет указываться в браузере для подключения документтов т.е http://server/dist/[name].js(можно указывать в DevServer) 
     },
    
     module: {
@@ -32,15 +33,14 @@ let config = {
                 }
             }
         },{
-            test: /\.(png|jpe?g|gif)$/,
+            test: /\.(png|jpe?g|gif|ico|svg)$/,
+            type: 'asset/resource'
             
-            use: {
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]'
-                }
-            }
         },{
+            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            type: 'asset/inline'
+
+          },{
             test:/\.s[ac]ss$/,
             use: [
                 {
@@ -51,13 +51,14 @@ let config = {
                 }, 
                 {
                     loader:'css-loader'
-                }, 
-                {
-                    loader:'sass-loader'
                 },
                 {
                     loader: 'postcss-loader'
-                }]
+                }, 
+                {
+                    loader:'sass-loader'
+                }
+                ]
         },{
             test:/\.css$/,
             use: [
@@ -87,7 +88,8 @@ let config = {
         
     }), new CopyWebpackPlugin({
         patterns: [
-            {from: path.join(PATHS.src, 'img'), to: path.join(PATHS.assets, 'img')}
+            // {from: path.join(PATHS.src, 'img'), to: path.join(PATHS.assets, 'img')},
+            {from: path.join(PATHS.src, 'static'), to: 'static'}
         ]
     })]
 };

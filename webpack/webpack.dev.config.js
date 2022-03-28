@@ -1,15 +1,12 @@
 'use strict';
 const webpack = require('webpack');
-const path = require('path');
 const {merge} = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
 
 
 const dev = merge(baseConfig, {
     mode: 'development',
-    devServer: {   
-        inline: true,
-    hot: true,         
+    devServer: {        
         // watchFiles:['src/**/*.html'],                    // Live reload + что-то в оперативке хранит
         static: [{
             directory: baseConfig.externals.paths.src,         // Следит за файлам из заданной директории, (откуда взять html, картинки и т.п),

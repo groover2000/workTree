@@ -1,4 +1,13 @@
+@import url(./_fonts.scss);
+@import url(./modules/wrapper.scss);
 
 body {
-    background-color: black;
+    background-color: #f4e48c;
+}
+.font {
+    font-family: 'Helvetica';
+}
+img {
+width: 100px;
+height: 100px;
 }
