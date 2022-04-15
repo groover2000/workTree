@@ -83,6 +83,7 @@ let config = {
         title: 'WebpackHtmlPLugin',
         hash: false,
         minify: false,
+        favicon: path.join(PATHS.src, '/static/favicon.ico'), 
         template: path.join(PATHS.src, '/index.html'),
         filename: 'index.html'
         
