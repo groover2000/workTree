@@ -6,7 +6,10 @@ const baseConfig = require('./webpack.base.config');
 
 const dev = merge(baseConfig, {
     mode: 'development',
-    devServer: {        
+    devServer: {       
+        historyApiFallback: {
+            disableDotRule: true,
+          }, 
         // watchFiles:['src/**/*.html'],                    // Live reload + что-то в оперативке хранит
         static: [{
             directory: baseConfig.externals.paths.src,         // Следит за файлам из заданной директории, (откуда взять html, картинки и т.п),

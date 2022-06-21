@@ -57,7 +57,14 @@ let config = {
                 }, 
                 {
                     loader:'sass-loader'
+                },
+                {
+                    
+                loader: 'sass-resources-loader',
+                options: {
+                    resources: [path.join(PATHS.src, 'scss/_variables.scss')]
                 }
+            }
                 ]
         },{
             test:/\.css$/,
